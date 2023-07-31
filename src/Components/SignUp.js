@@ -9,6 +9,7 @@ import pizza1 from "../assets/pizza1.png";
 import { setLoggedInUser, setMessage, setSnackBarOpen } from "../Redux/reducer";
 import { useDispatch } from "react-redux";
 import { options, genders, Zones, Countries, Campuses } from "./PickerOptions";
+import BasicDatePicker from "./DatePicker";
 
 const SignUp = () => {
   const isNonMobileScreen = useMediaQuery("(min-width: 600px)");
@@ -29,10 +30,13 @@ const SignUp = () => {
   const [country, setCountry] = React.useState("")
   const [campus, setCampus] = React.useState("")
   const [state, setState] = React.useState("")
+  const [date, setDate] = useState(null);
+  const [course, setCourse] = useState("");
 
 
-
-  
+   const handleDateChange = (newDate) => {
+     setDate(newDate);
+   };
   const handleZone = (event) => {
     setZone(event.target.value);
   };
@@ -203,6 +207,17 @@ alert(err.message);
                onChange={(e) => setState(e.target.value)}
               width="30%"
             />
+           
+          </Stack>
+          <Stack direction="row" width="100%" spacing={3}>
+            <TextBox
+              id="outlined-basic1"
+              label="Course"
+              variant="outlined"
+              onChange={(e) => setCourse(e.target.value)}
+              width="30%"
+            />
+           <BasicDatePicker date={date} handleDateChange={handleDateChange}/>
            
           </Stack>
           <Picker
