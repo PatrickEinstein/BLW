@@ -8,7 +8,7 @@ import PostCaller from "../Hooks/PostCaller";
 import pizza1 from "../assets/pizza1.png";
 import { setLoggedInUser, setMessage, setSnackBarOpen } from "../Redux/reducer";
 import { useDispatch } from "react-redux";
-import { options, genders, Zones, Countries, Campuses } from "./PickerOptions";
+import { options, genders, Zones, Countries, Campuses, Courses } from "./PickerOptions";
 import BasicDatePicker from "./DatePicker";
 
 const SignUp = () => {
@@ -33,7 +33,9 @@ const SignUp = () => {
   const [date, setDate] = useState(null);
   const [course, setCourse] = useState("");
 
-
+  const handleCourse = (event) => {
+    setCourse(event.target.value);
+  };
    const handleDateChange = (newDate) => {
      setDate(newDate);
    };
@@ -218,7 +220,14 @@ alert(err.message);
               width="30%"
             />
            <BasicDatePicker date={date} handleDateChange={handleDateChange}/>
-           
+           <Picker
+              handleChange={handleCourse}
+              description="Select Your Country"
+              options={Courses}
+              label="Career"
+              selected={course}
+              width="40%"
+            />
           </Stack>
           <Picker
               handleChange={handleCountry}
