@@ -4,7 +4,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { Typography } from "@mui/material";
-import useMediaQuery from "@mui/material";
+import {useMediaQuery} from "@mui/material";
 
 export default function Picker({
   label,
@@ -15,11 +15,12 @@ export default function Picker({
   height,
   width,
 }) {
+
   return (
     <div
       style={{
         height: height,
-        width: width,
+        width: width
       }}
     >
       <FormControl
@@ -29,12 +30,13 @@ export default function Picker({
           color: "white",
           border: "1px solid white", // Set the border to white
           borderRadius: "4px", // Optionally add some border radius for a better appearance
+          backgroundColor:"black"
         }}
       >
         <InputLabel
           id="demo-simple-select-autowidth-label"
           sx={{
-            color: "white", // Set the color of the label to white
+            color: "grey", // Set the color of the label to white
           }}
         >
           {description}
@@ -45,13 +47,19 @@ export default function Picker({
           value={selected}
           onChange={handleChange}
           label={label}
+          sx={{
+            backgroundColor: "powderblue",
+          }}
+        
           // endAdornment={<ArrowDropDownIcon />}
         >
           {options.map(({ value }) => (
-            <MenuItem key={value} value={`${value}`}>
+            <MenuItem key={value} value={`${value}`}
+           
+            >
               <Typography
                 sx={{
-                  color: "white", // Set the color of the option text to white
+                  color: "black", // Set the color of the option text to white
                 }}
               >
                 {" "}

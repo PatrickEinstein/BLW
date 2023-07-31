@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Stack, TextField, Typography } from "@mui/material";
+import { Box, Stack, TextField, Typography, useMediaQuery } from "@mui/material";
 import MyButtons from "./Button";
 import TextBox from "./TextField";
 import { useNavigate } from "react-router-dom";
@@ -8,9 +8,10 @@ import PostCaller from "../Hooks/PostCaller";
 import pizza1 from "../assets/pizza1.png";
 import { setLoggedInUser, setMessage, setSnackBarOpen } from "../Redux/reducer";
 import { useDispatch } from "react-redux";
-import { options, genders, Zone, Country, Campus } from "./PickerOptions";
+import { options, genders, Zones, Countries, Campuses } from "./PickerOptions";
 
 const SignUp = () => {
+  const isNonMobileScreen = useMediaQuery("(min-width: 600px)");
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [firstName, setFirstName] = useState();
@@ -23,9 +24,24 @@ const SignUp = () => {
   const [title, setTitle] = React.useState("");
   const [gender, setGender] = React.useState("");
   const [church, setChurch] = React.useState("");
+  const [city, setCity] = React.useState("")
+  const [zone, setZone] = React.useState("")
+  const [country, setCountry] = React.useState("")
+  const [campus, setCampus] = React.useState("")
+  const [state, setState] = React.useState("")
 
-  console.log(title, gender);
 
+
+  
+  const handleZone = (event) => {
+    setZone(event.target.value);
+  };
+  const handleCountry = (event) => {
+    setCountry(event.target.value);
+  };
+  const handleCampus = (event) => {
+    setCampus(event.target.value);
+  };
   const handleTitle = (event) => {
     setTitle(event.target.value);
   };
@@ -33,33 +49,64 @@ const SignUp = () => {
     setGender(event.target.value);
   };
 
+  const paylod={
+    title: title,
+    gender: gender,
+    church: church,
+    city: city,
+    zone: zone,
+    state: state,
+    country: country,
+    campus:campus,
+    fullname: `${firstName} ${lastName}`,
+    email: email,
+    phone: phone,
+    username: username,
+    password: password,
+    confirmPassword: confirmPassword,
+  }
+
   const onSignUp = async () => {
-    const user = PostCaller(
-      {
-        fullname: `${firstName} ${lastName}`,
-        email: email,
-        phone: phone,
-        username: username,
-        password: password,
-        confirmPassword: confirmPassword,
-      },
-      "pizzaSignUp"
-    );
-    const awaitedUser = await user;
-    console.log(awaitedUser);
-    dispatch(setSnackBarOpen(true));
-    dispatch(setMessage(awaitedUser.message));
-    if (awaitedUser.status === "200") {
-      navigate("/signin");
-    }
-  };
+console.log(paylod)
+
+try{
+
+  const user = PostCaller(
+    {
+      title: title,
+      gender: gender,
+      church: church,
+      city: city,
+      zone: zone,
+      state: state,
+      fullname: `${firstName} ${lastName}`,
+      email: email,
+      phone: phone,
+      username: username,
+      password: password,
+      confirmPassword: confirmPassword,
+    },
+    // "pizzaSignUp"
+  );
+  const awaitedUser = await user;
+  console.log(awaitedUser);
+  dispatch(setSnackBarOpen(true));
+  dispatch(setMessage(awaitedUser.message));
+  if (awaitedUser.status === "200") {
+    navigate("/signin");
+}
+}catch(err){
+alert(err.message);
+}  
+ };
   return (
     <Stack
       direction="row"
-      justifyContent="space-around"
+      justifyContent="center"
       sx={{
         backgroundColor: "transparent",
         height: 700,
+        width:"100%"
         // paddingTop: 10,
         // paddingBottom: 10,
       }}
@@ -133,12 +180,12 @@ const SignUp = () => {
               width="50%"
             />
             <Picker
-              // handleChange={handleGender}
+              handleChange={handleZone}
               description="Select Your Zone"
-              options={Zone}
+              options={Zones}
               label="Zone"
-              // selected={gender}
               width="50%"
+              selected={zone}
             />
           </Stack>
           <Stack direction="row" width="100%" spacing={3}>
@@ -146,38 +193,40 @@ const SignUp = () => {
               id="outlined-basic1"
               label="City"
               variant="outlined"
-              // onChange={(e) => setChurch(e.target.value)}
+              onChange={(e) => setCity(e.target.value)}
               width="30%"
             />
             <TextBox
               id="outlined-basic1"
               label="State"
               variant="outlined"
-              // onChange={(e) => setState(e.target.value)}
+               onChange={(e) => setState(e.target.value)}
               width="30%"
             />
-            <Picker
-              // handleChange={handleCountry}
-              description="Select Your Country"
-              options={Country}
-              label="Country"
-              // selected={country}
-              width="30%"
-            />
+           
           </Stack>
-
           <Picker
-            // handleChange={handleCampus}
+              handleChange={handleCountry}
+              description="Select Your Country"
+              options={Countries}
+              label="Country"
+              selected={country}
+              width="100%"
+            />
+          <Picker
+            handleChange={handleCampus}
             description="Select Your Campus Ministry Zone"
-            options={Campus}
+            options={Campuses}
             label="Campus"
-            // selected={campus}
+            selected={campus}
+            width="100%"
           />
           <TextBox
             id="outlined-basic1"
             label="First Name"
             variant="outlined"
             onChange={(e) => setFirstName(e.target.value)}
+            width="100%"
           />
           <TextBox
             id="outlined-basic1"

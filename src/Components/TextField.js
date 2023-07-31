@@ -29,6 +29,7 @@ const TextBox = ({ label, onChange }) => {
       id="outlined-basic2"
       label={label}
       variant="outlined"
+      required
       onChange={onChange}
     />
   );

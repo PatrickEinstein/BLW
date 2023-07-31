@@ -50,7 +50,7 @@ const SignIn = () => {
 
   return (
     <Stack
-      direction="row"
+      // direction="row"
       sx={{
         backgroundColor: "black",
         height: 700,
@@ -58,7 +58,7 @@ const SignIn = () => {
         // paddingBottom: 10,
       }}
     >
-      <Stack
+      {/* <Stack
         sx={{
           height: "100%",
           width: "50%",
@@ -74,11 +74,11 @@ const SignIn = () => {
             filter: "brightness(120%)",
           }}
         />
-      </Stack>
+      </Stack> */}
       <Box
         sx={{
           height: "auto",
-          width: "50%",
+          width: "100%",
           paddingTop: 10,
           paddingBottom: 10,
         }}
@@ -142,6 +142,7 @@ const SignIn = () => {
                 marginTop: 2,
                 marginLeft: 8,
               }}
+              onClick={() => navigate('/reset')}
             >
               Forgot Password?
             </Typography>

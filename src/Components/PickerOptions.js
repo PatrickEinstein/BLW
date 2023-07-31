@@ -25,7 +25,7 @@ const genders = [
   },
 ];
 
-const Campus = [
+const Campuses = [
   { value: "BLW ZONE A" },
   { value: "BLW ZONE B" },
   { value: "BLW ZONE C" },
@@ -60,7 +60,7 @@ const Campus = [
   { value: "BLW INTERNATIONAL MISSIONS" },
 ];
 
-const Zone = [
+const Zones = [
   { value: " CE Lagos Zone 1" },
   { value: " CE Lagos Zone 2" },
   { value: " CE Lagos Zone 3" },
@@ -149,7 +149,7 @@ const Zone = [
   { value: " South Pacific" },
 ];
 
-const Country = [
+const Countries = [
   { value: "Afghanistan" },
   { value: "Aland Islands" },
   { value: "Albania" },
@@ -399,4 +399,4 @@ const Country = [
   { value: "Zimbabwe" },
 ];
 
-export { options, genders, Zone, Country, Campus };
+export { options, genders, Zones, Countries, Campuses };
