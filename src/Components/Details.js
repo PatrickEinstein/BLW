@@ -23,7 +23,6 @@ export const Details = ({
       spacing={5}
       sx={{
         width: "70%",
-        background: "white",
         position: "absolute",
         paddingLeft: isNonMobileScreen ? 5 : 1,
         paddingRight: isNonMobileScreen ? 5 : 1,
@@ -63,7 +62,7 @@ export const Details = ({
       )}
       <MyButtons
         text={submitted ? "Login" : "Submit"}
-        onClick={submitted ? () => navigate("/login") : onClick}
+        onClick={submitted ? () => navigate("/SignIn") : onClick}
         width="70%"
       />
       {change === 2 ? (

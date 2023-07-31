@@ -22,7 +22,7 @@ export default function MyButtons({
       startIcon={startIcon}
       endIcon={endIcon}
       sx={{
-        backgroundColor: backgroundColor,
+        backgroundColor: "purple",
         width: width,
         height: height,
       }}

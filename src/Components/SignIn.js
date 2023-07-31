@@ -8,6 +8,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import Logo from "../assets/blw.png"
 import MyButtons from "./Button";
 import TextBox from "./TextField";
 import { useNavigate } from "react-router-dom";
@@ -27,7 +28,7 @@ const SignIn = () => {
         email: email,
         password: password,
       },
-      "pizzaSignIn",
+      "login",
       {
         "Content-Type": "application/json",
       }
@@ -50,31 +51,26 @@ const SignIn = () => {
 
   return (
     <Stack
-      // direction="row"
+   
       sx={{
         backgroundColor: "black",
         height: 700,
-        // paddingTop: 10,
-        // paddingBottom: 10,
+        
+          backgroundColor: "transparent",
+          backgroundRepeat:"no-repeat",
+          backgroundPosition:"center",
+          backgroundSize:"cover",
+          backgroundImage: `
+          linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)),
+          url(${Logo})
+        `,
+          width:"100%"
+        
+      
+      
       }}
     >
-      {/* <Stack
-        sx={{
-          height: "100%",
-          width: "50%",
-          p: "0 0 3rem 1.5rem",
-        }}
-      >
-        <img
-          src={pizza2}
-          style={{
-            objectFit: "contain",
-            width: "100%",
-            height: "100%",
-            filter: "brightness(120%)",
-          }}
-        />
-      </Stack> */}
+     
       <Box
         sx={{
           height: "auto",

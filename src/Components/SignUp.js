@@ -5,11 +5,12 @@ import TextBox from "./TextField";
 import { useNavigate } from "react-router-dom";
 import Picker from "../Components/Picker";
 import PostCaller from "../Hooks/PostCaller";
-import pizza1 from "../assets/pizza1.png";
+import dayjs from 'dayjs';
 import { setLoggedInUser, setMessage, setSnackBarOpen } from "../Redux/reducer";
 import { useDispatch } from "react-redux";
 import { options, genders, Zones, Countries, Campuses, Courses } from "./PickerOptions";
 import BasicDatePicker from "./DatePicker";
+import Logo from "../assets/blw.png"
 
 const SignUp = () => {
   const isNonMobileScreen = useMediaQuery("(min-width: 600px)");
@@ -30,8 +31,8 @@ const SignUp = () => {
   const [country, setCountry] = React.useState("")
   const [campus, setCampus] = React.useState("")
   const [state, setState] = React.useState("")
-  const [date, setDate] = useState(null);
   const [course, setCourse] = useState("");
+  const [date, setDate] = React.useState(dayjs('2022-04-17'));
 
   const handleCourse = (event) => {
     setCourse(event.target.value);
@@ -67,6 +68,8 @@ const SignUp = () => {
     fullname: `${firstName} ${lastName}`,
     email: email,
     phone: phone,
+    date:date,
+      course:course,
     username: username,
     password: password,
     confirmPassword: confirmPassword,
@@ -79,6 +82,8 @@ try{
 
   const user = PostCaller(
     {
+      date:date,
+      course:course,
       title: title,
       gender: gender,
       church: church,
@@ -92,7 +97,7 @@ try{
       password: password,
       confirmPassword: confirmPassword,
     },
-    // "pizzaSignUp"
+    "signup"
   );
   const awaitedUser = await user;
   console.log(awaitedUser);
@@ -108,37 +113,23 @@ alert(err.message);
   return (
     <Stack
       direction="row"
-      justifyContent="center"
       sx={{
         backgroundColor: "transparent",
-        height: 700,
+        backgroundRepeat:"no-repeat",
+        backgroundPosition:"center",
+        backgroundSize:"cover",
+        backgroundImage: `
+        linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)),
+        url(${Logo})
+      `,
         width:"100%"
-        // paddingTop: 10,
-        // paddingBottom: 10,
+      
       }}
     >
-      {/* <Stack
-        sx={{
-          height: "100%",
-          width: "50%",
-          p: "0 0 3rem 1.5rem",
-        }}
-      >
-        <img
-          // src={pizza1}
-          alt=""
-          style={{
-            objectFit: "contain",
-            width: "100%",
-            height: "100%",
-            filter: "brightness(120%)",
-          }}
-        />
-      </Stack> */}
       <Box
         sx={{
           height: "auto",
-          width: "50%",
+          width: "100%",
         }}
       >
         <Stack spacing={3} justifyContent="center" alignItems="center">
@@ -148,8 +139,7 @@ alert(err.message);
               fontSize: 40,
             }}
           >
-            Tell us about
-            <span
+            Tell us about  <span
               style={{
                 color: "lightblue",
                 fontSize: 40,
@@ -158,15 +148,16 @@ alert(err.message);
             >
               you
             </span>
+           
           </Typography>
-          <Stack direction="row" width="100%" spacing={3}>
+        
             <Picker
               handleChange={handleTitle}
               options={options}
               description="Preferred Title"
               label="Title"
               selected={title}
-              width="50%"
+              width="80%"
             />
             <Picker
               handleChange={handleGender}
@@ -174,68 +165,68 @@ alert(err.message);
               options={genders}
               label="Gender"
               selected={gender}
-              width="50%"
+              width="80%"
             />
-          </Stack>
-          <Stack direction="row" width="100%" spacing={3}>
+          
+         
             <TextBox
               id="outlined-basic1"
               label="Church"
               variant="outlined"
               onChange={(e) => setChurch(e.target.value)}
-              width="50%"
+              width="100%"
             />
             <Picker
               handleChange={handleZone}
               description="Select Your Zone"
               options={Zones}
               label="Zone"
-              width="50%"
+              width="80%"
               selected={zone}
             />
-          </Stack>
-          <Stack direction="row" width="100%" spacing={3}>
+         
+      
             <TextBox
               id="outlined-basic1"
               label="City"
               variant="outlined"
               onChange={(e) => setCity(e.target.value)}
-              width="30%"
+              width="100%"
             />
             <TextBox
               id="outlined-basic1"
               label="State"
               variant="outlined"
                onChange={(e) => setState(e.target.value)}
-              width="30%"
+              width="100%"
             />
            
-          </Stack>
-          <Stack direction="row" width="100%" spacing={3}>
+         
+          
             <TextBox
               id="outlined-basic1"
               label="Course"
               variant="outlined"
               onChange={(e) => setCourse(e.target.value)}
-              width="30%"
+              width="100%"
             />
-           <BasicDatePicker date={date} handleDateChange={handleDateChange}/>
+           <BasicDatePicker value={date} setValue={setDate}/>
            <Picker
               handleChange={handleCourse}
-              description="Select Your Country"
+              description="Select Your Career"
               options={Courses}
               label="Career"
               selected={course}
-              width="40%"
+              width="80%"
             />
-          </Stack>
+          
           <Picker
               handleChange={handleCountry}
               description="Select Your Country"
               options={Countries}
               label="Country"
               selected={country}
-              width="100%"
+              width="80%"
             />
           <Picker
             handleChange={handleCampus}
@@ -243,7 +234,7 @@ alert(err.message);
             options={Campuses}
             label="Campus"
             selected={campus}
-            width="100%"
+            width="80%"
           />
           <TextBox
             id="outlined-basic1"

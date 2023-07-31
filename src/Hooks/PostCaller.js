@@ -1,7 +1,7 @@
 const PostCaller = async (body, route, headers) => {
   try {
     const savedUserResponse = await fetch(
-      `https://vote-verse-server-production-6153.up.railway.app/${route}`,
+      `http://localhost:8080/${route}`,
 
       {
         method: "POST",
@@ -23,7 +23,7 @@ const PostCaller = async (body, route, headers) => {
 export const PostCallerAdmin = async (body, route, headers) => {
   try {
     const savedUserResponse = await fetch(
-      `http://localhost:8000/${route}`,
+      `http://localhost:8080/${route}`,
 
       {
         method: "PATCH",

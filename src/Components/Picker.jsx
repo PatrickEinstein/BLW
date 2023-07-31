@@ -25,7 +25,6 @@ export default function Picker({
     >
       <FormControl
         sx={{
-          m: 1,
           width: "100%",
           color: "white",
           border: "1px solid white", // Set the border to white

@@ -1,22 +1,32 @@
+import * as React from 'react';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateField } from '@mui/x-date-pickers/DateField';
 
-import * as React from "react";
-import { useState } from "react";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+export default function BasicDatePicker({value, setValue}) {
+  
 
-export default function BasicDatePicker({date,handleDateChange}) {
- 
+  const whiteStyle = {
+    color: 'white',
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: '1px solid white',
+    },
+  };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DemoContainer components={["DatePicker"]}>
-        {/* Step 3: Pass the state variable to the DatePicker component */}
-        <DatePicker
-          label="Date of Birth"
-          value={date}
-          onChange={handleDateChange}
+      <DemoContainer components={['DateField', 'DateField']}>
+        <DateField
+          label="Controlled field"
+          value={value}
+          onChange={(newValue) => setValue(newValue)}
+          InputLabelProps={{
+            style: { color: 'white' },
+          }}
+          InputProps={{
+            style: whiteStyle,
+          }}
         />
       </DemoContainer>
     </LocalizationProvider>

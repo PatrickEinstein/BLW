@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Box, IconButton, Stack, TextField, Typography } from "@mui/material";
-import { setMessage, setOpen } from "../Redux/reducer";
+import { setMessage, setOpen, setSnackBarOpen } from "../Redux/reducer";
 import { useDispatch } from "react-redux";
 import {PatchCaller} from "../Hooks/PatchCaller"
 import PostCaller from "../Hooks/PostCaller";
 import { Details } from "../Components/Details";
 import { useMediaQuery } from "@mui/material";
-;
+import Logo from "../assets/blw.png";
 
 const ForgetPassword = () => {
   const isNonMobileScreen = useMediaQuery("(min-width:600px)");
@@ -17,34 +17,31 @@ const ForgetPassword = () => {
   const [email, setEmail] = useState("");
   const [otp, setOTP] = useState();
   const [password, setPassword] = useState("");
-  const [submitted, setSubmitted] = useState(false);
+  const [submittedform, setSubmitted] = useState(false);
   // console.log(email, otp, password);
 
   const onChangeEmail = async () => {
-    setChange(2);
-  };
-
-  const onChangePassword = async () => {
     try {
-      const submit = PatchCaller(
+     
+      const submit = PostCaller(
         {
           email: email,
-          password: password,
         },
-        "resetpass"
+        "getOTP"
       );
       const submitted = await submit;
-      if (submitted.success === true) {
-        // dispatch(setOpen(true));
-        // dispatch(setMessage(submitted.message));
-        // setSubmitted(true);
+      console.log(submitted);
+      if (submitted.status === true) {
+        dispatch(setSnackBarOpen(true));
+        dispatch(setMessage(submitted.message));
+        setChange(1);
       } else {
-        // dispatch(setOpen(true));
-        // dispatch(setMessage(submitted.message));
+        dispatch(setSnackBarOpen(true));
+        dispatch(setMessage(submitted.message));
         return;
       }
     } catch (err) {
-    //   dispatch(setOpen(true));
+    alert(err.message)
     }
   };
 
@@ -55,24 +52,50 @@ const ForgetPassword = () => {
           email: email,
           otp: otp,
         },
-        "verify"
+        "verifyotp"
       );
       const submitted = await submit;
-      // console.log(submitted);
-      if (submitted.success === true) {
-        // dispatch(setOpen(true));
-        // dispatch(setMessage(submitted.message));
+      console.log(submitted);
+      if (submitted.status === true) {
+        dispatch(setSnackBarOpen(true));
+        dispatch(setMessage(submitted.message));
         setChange(2);
       } else {
-        // dispatch(setOpen(true));
-        // dispatch(setMessage(submitted.message));
+        dispatch(setSnackBarOpen(true));
+        dispatch(setMessage(submitted.message));
         return;
       }
     } catch (err) {
-    //   dispatch(setOpen(true));
+    alert(err.message);
     }
   };
 
+  const onChangePassword = async () => {
+    try {
+      const submit = PostCaller(
+        {
+          email: email,
+          password: password,
+        },
+        "changepassword"
+      );
+      const submitted = await submit;
+      console.log(submitted);
+      if (submitted.status === true) {
+        dispatch(setSnackBarOpen(true));
+        dispatch(setMessage(submitted.message));
+        setSubmitted(true);
+      } else {
+        dispatch(setSnackBarOpen(true));
+        dispatch(setMessage(submitted.message));
+        return;
+      }
+    } catch (err) {
+   alert(err.message);
+    }
+  };
+
+  
   return (
     <Box
       justifyContent="center"
@@ -80,6 +103,13 @@ const ForgetPassword = () => {
       sx={{
         paddingLeft: 5,
         paddingRight: 5,
+        backgroundRepeat:"no-repeat",
+        backgroundPosition:"center",
+        backgroundSize:"cover",
+        backgroundImage: `
+        linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)),
+        url(${Logo})
+      `,
       }}
     >
       {(() => {
@@ -118,9 +148,9 @@ const ForgetPassword = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 onClick={onChangePassword}
-                text={submitted ? null : "Enter a new password"}
+                text={submittedform ? null : "Enter a new password"}
                 change={change}
-                submitted={submitted}
+                submitted={submittedform}
                 setChange={setChange}
               />
             );
