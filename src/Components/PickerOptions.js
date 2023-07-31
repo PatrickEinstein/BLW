@@ -399,4 +399,109 @@ const Country = [
   { value: "Zimbabwe" },
 ];
 
-export { options, genders, Zone, Country, Campus };
+const Courses = [
+  { value: "Chiropractor" },
+  { value: "Dentist" },
+  { value: "Dietitian or Nutritionist" },
+  { value: "Optometrist" },
+  { value: "Pharmacist" },
+  { value: "Physician" },
+  { value: "Physician Assistant" },
+  { value: "Podiatrist" },
+  { value: "Registered Nurse" },
+  { value: "Therapist" },
+  { value: "Veterinarian" },
+  { value: "Health Technologist or Technician" },
+  { value: "Other Healthcare Practitioners and Technical Occupation" },
+  { value: "Nursing, Psychiatric, or Home Health Aid" },
+  { value: "Occupational and Physical Therapist Assistant or Aide" },
+  { value: "Other Healthcare Support Occupation" },
+  { value: "Chief Executive" },
+  { value: "General and Operations Manager" },
+  {
+    value:
+      "Advertising, Marketing, Promotions, Public Relations, and Sales Manager",
+  },
+  { value: "Operations Specialties Manager (e.g., IT or HR Manager)" },
+  { value: "Construction Manager" },
+  { value: "Engineering Manager" },
+  { value: "Accountant, Auditor" },
+  { value: "Business Operations or Financial Specialist" },
+  { value: "Business Owner" },
+  { value: "Other Business, Executive, Management, Financial Occupation" },
+  { value: "Architect, Surveyor, or Cartographer" },
+  { value: "Engineer" },
+  { value: "Other Architecture and Engineering Occupation" },
+  { value: "Postsecondary Teacher (e.g., College Professor)" },
+  { value: "Primary, Secondary, or Special Education School Teacher" },
+  { value: "Other Teacher or Instructor" },
+  { value: "Other Education, Training, and Library Occupation" },
+  { value: "Arts, Design, Entertainment, Sports, and Media Occupations" },
+  { value: "Computer Specialist, Mathematical Science" },
+  {
+    value:
+      "Counselor, Social Worker, or Other Community and Social Service Specialist",
+  },
+  { value: "Lawyer, Judge" },
+  {
+    value:
+      "Life Scientist (e.g., Animal, Food, Soil, or Biological Scientist, Zoologist)",
+  },
+  {
+    value:
+      "Physical Scientist (e.g., Astronomer, Physicist, Chemist, Hydrologist)",
+  },
+  { value: "Clergy" },
+  { value: "Social Scientist and Related Worker" },
+  { value: "Other Professional Occupation" },
+  { value: "Supervisor of Administrative Support Workers" },
+  { value: "Financial Clerk" },
+  { value: "Secretary or Administrative Assistant" },
+  { value: "Material Recording, Scheduling, and Dispatching Worker" },
+  { value: "Other Office and Administrative Support Occupation" },
+  {
+    value:
+      "Protective Service (e.g., Fire Fighting, Police Officer, Correctional Officer)",
+  },
+  { value: "Chef or Head Cook" },
+  { value: "Cook or Food Preparation Worker" },
+  {
+    value:
+      "Food and Beverage Serving Worker (e.g., Bartender, Waiter, Waitress)",
+  },
+  { value: "Building and Grounds Cleaning and Maintenance" },
+  {
+    value:
+      "Personal Care and Service (e.g., Hairdresser, Flight Attendant, Concierge)",
+  },
+  { value: "Sales Supervisor, Retail Sales" },
+  { value: "Retail Sales Worker" },
+  { value: "Insurance Sales Agent" },
+  { value: "Sales Representative" },
+  { value: "Real Estate Sales Agent" },
+  { value: "Other Services Occupation" },
+  {
+    value:
+      "Construction and Extraction (e.g., Construction Laborer, Electrician)",
+  },
+  { value: "Farming, Fishing, and Forestry" },
+  { value: "Installation, Maintenance, and Repair" },
+  { value: "Production Occupations" },
+  {
+    value:
+      "Other Agriculture, Maintenance, Repair, and Skilled Crafts Occupation",
+  },
+  { value: "Aircraft Pilot or Flight Engineer" },
+  {
+    value:
+      "Motor Vehicle Operator (e.g., Ambulance, Bus, Taxi, or Truck Driver)",
+  },
+  { value: "Other Transportation Occupation" },
+  { value: "Military" },
+  { value: "Homemaker" },
+  { value: "Other Occupation" },
+  { value: "Don't Know" },
+  { value: "Not Applicable" },
+];
+
+export { options, genders, Zone, Country, Campus, Courses };
