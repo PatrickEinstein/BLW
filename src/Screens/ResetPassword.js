@@ -29,6 +29,7 @@ const ForgetPassword = () => {
         },
         "getOTP"
       );
+      
       const submitted = await submit;
       console.log(submitted);
       if (submitted.status === true) {
