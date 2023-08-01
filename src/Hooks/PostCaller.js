@@ -1,7 +1,7 @@
 const PostCaller = async (body, route, headers) => {
   try {
     const savedUserResponse = await fetch(
-      `http://localhost:8080/${route}`,
+      `https://blw-server.vercel.app/${route}`,
 
       {
         method: "POST",
@@ -23,7 +23,7 @@ const PostCaller = async (body, route, headers) => {
 export const PostCallerAdmin = async (body, route, headers) => {
   try {
     const savedUserResponse = await fetch(
-      `http://localhost:8080/${route}`,
+      `https://blw-server.vercel.app/${route}`,
 
       {
         method: "PATCH",
