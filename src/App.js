@@ -5,7 +5,7 @@ import Drawer2 from "./Components/Drawer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import SimpleSnackbar from "./Components/Snackbar";
 import { useDispatch, useSelector } from "react-redux";
-import { Box } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import ForgetPassword from "./Screens/ResetPassword";
 import SignUp from "./Components/SignUp";
 import SignIn from "./Components/SignIn";
@@ -28,10 +28,15 @@ function App() {
 
   return (
     <BrowserRouter>
+   
+    
       <SimpleSnackbar
         open={opensnackbar}
         message={message}
         handleClose={handleClose}
+        sx={{
+          transform:  "translate(50%, 20%)",         
+        }}
       />
 
       <Routes>
